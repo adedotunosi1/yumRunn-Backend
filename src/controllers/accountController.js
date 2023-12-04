@@ -12,7 +12,7 @@ const userTransaction = require("../models/transactionNewModel");
 const { signJWT, verifyJWT } = require('../utils/jwt.utils');
 const { createSession } = require('../utils/session');
 const { signUpWithGoogle, verifyGoogleToken } = require('./googleController');
-const GOOGLE_CLIENT_ID = 'your-google-client-id';
+const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
 const { OAuth2Client } = require('google-auth-library');
 const client = new OAuth2Client(GOOGLE_CLIENT_ID);
 
@@ -142,7 +142,7 @@ if (decodedUser) {
 };
 
 const register_google = async (req, res) => {
-  const redirectUrl = 'http://yumRun.onrender.com/auth/register-google-callback'; // Replace with your actual callback URL
+  const redirectUrl = 'http://yumrun.onrender.com/auth/register-google-callback'; // Replace with your actual callback URL
   const authUrl = client.generateAuthUrl({
     scope: ['email', 'profile'],
     redirect_uri: redirectUrl,
@@ -187,7 +187,7 @@ const register_google_callback = async (req, res, next) => {
 }
 
 const google_login = async (req, res, next) => {
-  const redirectUrl = 'http://yumRun.onrender.com/auth/google-callback'; // Replace with your actual callback URL
+  const redirectUrl = 'http://yumrun.onrender.com/auth/login-google-callback'; // Replace with your actual callback URL
   const authUrl = client.generateAuthUrl({
     scope: ['email', 'profile'],
     redirect_uri: redirectUrl,

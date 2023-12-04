@@ -5,6 +5,7 @@ const { userLogout, requireUser } = require('../middlewares/auth.middleware');
 const authRoute = express.Router();
 
 authRoute.post('/register', controller.AccountController.register);
+authRoute.post('/register-google', controller.AccountController.register_google);
 authRoute.get('/register-google-callback', controller.AccountController.register_google_callback);
 authRoute.post('/login-google', controller.AccountController.google_login);
 authRoute.get('/login-google-callback', controller.AccountController.google_login_callback);
