@@ -13,9 +13,9 @@ const { signJWT, verifyJWT } = require('../utils/jwt.utils');
 const { createSession } = require('../utils/session');
 const { signUpWithGoogle, verifyGoogleToken } = require('./googleController');
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
+const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET; // Include this line
 const { OAuth2Client } = require('google-auth-library');
-const client = new OAuth2Client(GOOGLE_CLIENT_ID);
-
+const client = new OAuth2Client(GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET); // Include clientSecret
 
 const register = async (req, res, next) => {
     const {fullName, email, password} = req.body;
